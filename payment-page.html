@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الدفع</title>
+        <link rel="icon" type="image/png" href="./icon.jpeg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #6a1b9a;
+            --bg-gray: #f2f2f2;
+            --input-bg: #e0e0e0;
+            --btn-gradient: linear-gradient(90deg, #1a237e, #7b1fa2);
+        }
+
+        * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; }
+        body { background: #222; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        
+        .mobile-frame {
+            width: 375px; height: 780px; 
+            background-color: var(--bg-gray);
+            border-radius: 10px; overflow: hidden; display: flex; flex-direction: column;
+            position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        header { background: #1a151b; color: white; padding: 15px; display: flex; align-items: center; }
+        header a { color: white; text-decoration: none; font-size: 20px; }
+
+        .content { padding: 20px; flex: 1; }
+        .page-title { color: var(--primary-purple); text-align: center; font-size: 20px; margin: 10px 0 30px; font-weight: bold; }
+
+        .input-group { margin-bottom: 20px; position: relative; }
+        .input-group input { 
+            width: 100%; padding: 15px; border: none; 
+            background: var(--input-bg); border-radius: 4px; 
+            text-align: left; font-size: 16px; outline: none; color: #333;
+        }
+        .input-group label { 
+            position: absolute; right: 12px; top: 50%; 
+            transform: translateY(-50%); color: #555; font-weight: bold; 
+            font-size: 14px; pointer-events: none;
+        }
+
+        .amount-container { display: flex; gap: 10px; margin-bottom: 20px; align-items: stretch; }
+        .currency-tag { 
+            background: #0288d1; color: white; padding: 0 15px; 
+            border-radius: 4px; display: flex; align-items: center; font-weight: bold;
+        }
+        .amount-input { flex: 1; position: relative; }
+
+        .btn-pay { 
+            width: 100%; padding: 16px; border: none; border-radius: 8px;
+            background: var(--btn-gradient); color: white; font-weight: bold; 
+            font-size: 18px; margin-top: 20px; cursor: pointer;
+        }
+
+        /* القائمة السفلية */
+        .bottom-sheet-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); display: none; z-index: 100;
+        }
+        .bottom-sheet {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: white; border-radius: 15px 15px 0 0;
+            transform: translateY(100%); transition: transform 0.3s ease;
+        }
+        .bottom-sheet.active { transform: translateY(0); }
+        .sheet-header { padding: 15px; border-bottom: 2px solid var(--primary-purple); text-align: left; }
+        .btn-close { color: #222; font-weight: bold; cursor: pointer; }
+
+        .bank-option { 
+            display: flex; align-items: center; justify-content: flex-end; 
+            padding: 15px; border-bottom: 1px solid #eee; cursor: pointer;
+        }
+        .bank-name { flex: 1; text-align: right; margin-right: 15px; font-weight: bold; color: #444; font-size: 14px; }
+        .bank-logo { width: 45px; height: 45px; border: 1px solid #ddd; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .bank-logo img { width: 85%; object-fit: contain; }
+    </style>
+</head>
+<body>
+
+<div class="mobile-frame">
+    <header>
+        <a href="dashboard.html"><i class="fas fa-arrow-right"></i></a>
+    </header>
+
+    <div class="content">
+        <h2 class="page-title">صديقك من جهات الاتصال</h2>
+
+        <!-- حقل الاسم الجديد -->
+        <div class="input-group">
+            <input type="text" id="recName" placeholder="">
+            <label>الاسم</label>
+        </div>
+
+        <!-- حقل رقم الموبايل -->
+        <div class="input-group">
+            <input type="text" id="recPhone" value="0593262360">
+            <label>رقم الموبايل</label>
+        </div>
+
+        <!-- حقل المبلغ -->
+        <div class="amount-container">
+            <div class="currency-tag">شيكل</div>
+            <div class="amount-input">
+                <div class="input-group">
+                    <input type="text" id="recAmount" placeholder="">
+                    <label>المبلغ</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- حقل الوصف -->
+        <div class="input-group">
+            <input type="text" id="recDesc" placeholder="">
+            <label>الوصف</label>
+        </div>
+
+        <button class="btn-pay" id="openSheet">ادفع</button>
+    </div>
+
+    <!-- نافذة البنوك -->
+    <div class="bottom-sheet-overlay" id="overlay">
+        <div class="bottom-sheet" id="sheet">
+            <div class="sheet-header">
+                <span class="btn-close" id="closeSheet">أغلق</span>
+            </div>
+            
+            <div class="bank-option" onclick="processAndGo()">
+                <span class="bank-name">البنك الاسلامي العربي</span>
+                <div class="bank-logo"><img src="./bnk.jpeg"></div>
+            </div>
+
+            <div class="bank-option" onclick="processAndGo()">
+                <span class="bank-name">بنك فلسطين</span>
+                <div class="bank-logo"><img src="./bnk.jpeg"></div>
+            </div>
+
+            <div class="bank-option" onclick="processAndGo()">
+                <span class="bank-name">محفظة بال باي</span>
+                <div class="bank-logo"><img src="./bnk.jpeg"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const openBtn = document.getElementById('openSheet');
+    const closeBtn = document.getElementById('closeSheet');
+    const overlay = document.getElementById('overlay');
+    const sheet = document.getElementById('sheet');
+
+    // فتح القائمة
+    openBtn.addEventListener('click', () => {
+        overlay.style.display = 'block';
+        setTimeout(() => sheet.classList.add('active'), 10);
+    });
+
+    // إغلاق القائمة
+    const closeSheetFunc = () => {
+        sheet.classList.remove('active');
+        setTimeout(() => overlay.style.display = 'none', 300);
+    };
+    closeBtn.addEventListener('click', closeSheetFunc);
+
+    // وظيفة حفظ البيانات والانتقال
+    function processAndGo() {
+        // جمع البيانات من الحقول
+        const name = document.getElementById('recName').value || "غير معروف";
+        const phone = document.getElementById('recPhone').value;
+        const amount = document.getElementById('recAmount').value || "0";
+
+        // تخزين البيانات محلياً لنقلها للصفحة التالية
+        localStorage.setItem('paymentName', name);
+        localStorage.setItem('paymentPhone', phone);
+        localStorage.setItem('paymentAmount', amount);
+
+        // الانتقال لصفحة التأكيد
+        window.location.href = 'confirm-payment.html';
+    }
+</script>
+
+</body>
+</html>

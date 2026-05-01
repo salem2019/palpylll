@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="./icon.jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الواجهة الرئيسية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; }
+        body { background: #222; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        
+        .mobile-frame {
+            width: 375px; height: 780px; 
+            background-color: #8b0a4d; /* اللون الأرجواني المحمر من الصورة */
+            background-image: radial-gradient(circle at center, #9c155d 0%, #6a0438 100%);
+            border-radius: 10px; overflow: hidden; display: flex; flex-direction: column;
+        }
+
+        header { background: #121212; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .header-icons { display: flex; gap: 18px; align-items: center; }
+        .notif-badge { background: #f44336; font-size: 10px; padding: 2px 5px; border-radius: 10px; margin-right: -10px; vertical-align: top; }
+
+        /* تفعيل السكرول */
+        .main-scroll { flex: 1; overflow-y: auto; padding: 15px; scrollbar-width: none; }
+        .main-scroll::-webkit-scrollbar { display: none; }
+
+        .balance-card { background: white; border-radius: 4px; padding: 20px; text-align: right; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .welcome { font-size: 13px; color: #555; margin-bottom: 8px; font-weight: 500; }
+        .currency-title { color: #8b0a4d; font-weight: bold; font-size: 15px; }
+        .amount-big { font-size: 34px; font-weight: bold; color: #222; margin: 12px 0; }
+
+        .currency-row { background: #ebebeb; padding: 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-radius: 4px; }
+        .currency-row .label { color: #8b0a4d; font-weight: bold; font-size: 14px; }
+        .currency-row .val { font-weight: 500; color: #333; }
+
+        .less-link { color: white; text-align: right; display: block; margin: 10px 0 20px; font-size: 14px; font-weight: bold; }
+
+        .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-bottom: 40px; }
+        .service-box { background: white; border-radius: 4px; padding: 22px 10px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); }
+        .icon-circle-bg { width: 68px; height: 68px; border-radius: 50%; background: #6a1b9a; color: white; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+        .service-box span { font-size: 12px; font-weight: bold; color: #222; line-height: 1.3; }
+        .icon-circle-bg {
+    width: 100px; /* تأكد من تحديد حجم الدائرة */
+    height: 100px;
+    background-color: #eee; /* لون الخلفية */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* لمنع خروج الصورة عن حدود الدائرة */
+}
+
+.circle-img {
+    width: 100%; /* تحكم في حجم الصورة بالنسبة للدائرة (مثل حجم الأيقونة) */
+    height: 260%;
+    object-fit: contain; /* للحفاظ على أبعاد الصورة دون تشويه */
+}
+    </style>
+</head>
+<body>
+
+<div class="mobile-frame">
+    <header>
+        <div class="header-icons">
+            <span><i class="fas fa-bell"></i><span class="notif-badge">57</span></span>
+            <span><i class="fas fa-qrcode"></i></span>
+        </div>
+        <i class="fas fa-bars"></i>
+    </header>
+
+    <div class="main-scroll">
+        <div class="balance-card">
+            <p class="welcome" style="font-size: larger;">مرحباً، Mustafa Muhammad Khalil Al-Sayed</p>
+            <p class="currency-title">حساب الشيكل</p>
+            <h1 class="amount-big">84724.00 شيكل</h1>
+        </div>
+
+        <div class="currency-row">
+            <span class="val">0.00 دولار أمريكي</span>
+            <span class="label">حساب الدولار</span>
+        </div>
+        <div class="currency-row">
+            <span class="val">0.000 دينار أردني</span>
+            <span class="label">حساب الدينار</span>
+        </div>
+
+        <p class="less-link">عرض أقل</p>
+
+        <div class="services-grid">
+            <div class="service-box">
+<div class="icon-circle-bg">
+    <img src="./فحض اكواد.png" alt="icon" class="circle-img">
+</div>                 <span>فحص كود الصرف</span>
+            </div>
+            <div class="item service-box">
+<div class="icon-circle-bg">
+    <img src="./اي بؤاق.png" alt="icon" class="circle-img">
+</div>                <span>الدفع الفوري</span>
+            </div>
+            <div class="service-box">
+<div class="icon-circle-bg">
+    <img src="./اي سداد.png" alt="icon" class="circle-img">
+</div>                <span>فواتير / اقساط / قروض</span>
+            </div>
+            <div class="service-box">
+<div class="icon-circle-bg">
+    <img src="./كيو ار.png" alt="icon" class="circle-img">
+</div>                 <span>قراءة كيواركود</span>
+            </div>
+            <div class="service-box">
+<div class="icon-circle-bg">
+    <img src="./شحن عداد الكهرباؤ.png" alt="icon" class="circle-img">
+</div>                 <span>شحن عدادات الكهرباء</span>
+            </div>
+            <div class="service-box">
+<div class="icon-circle-bg">
+    <img src="./طلب اموال.png" alt="icon" class="circle-img">
+</div>                 <span>شحن ارصدة الهواتف</span>
+            </div>
+            <!-- أيقونات إضافية تظهر عند السكرول -->
+            <div class="service-box">
+<div class="icon-circle-bg">
+    <img src="./دفع لتاجر.png" alt="icon" class="circle-img">
+</div>                 <span>الدفع لتاجر</span>
+            </div>
+      <!-- ابحث عن هذا الجزء في ملف dashboard.html وحدثه -->
+<div class="service-box" onclick="window.location.href='pay-friend.html'" style="cursor: pointer;">
+<div class="icon-circle-bg">
+    <img src="./دفع لصديق.png" alt="icon" class="circle-img">
+</div>     <span>الدفع لصديق</span>
+</div>
+            <div class="service-box">
+    <img src="./اعدادات.png" alt="icon" class="circle-img">
+                <span>إعدادات</span>
+            </div>
+
+
+
+                        <div class="service-box">
+    <img src="./التحويل بين حساباتي.png" alt="icon" class="circle-img">
+                <span>التحويل بين حساباتي</span>
+            </div>
+
+
+
+
+
+
+
+                        <div class="service-box">
+    <img src="./خسابات العائبة.png" alt="icon" class="circle-img">
+                <span>حسابات عائلتي</span>
+            </div>
+
+
+
+                        <div class="service-box">
+    <img src="./سحب نقدي.png" alt="icon" class="circle-img">
+                <span>سحب نقدي</span>
+            </div>
+
+                                    <div class="service-box">
+    <img src="./التقارير.png" alt="icon" class="circle-img">
+                <span>التقارير </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

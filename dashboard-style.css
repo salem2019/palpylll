@@ -1,0 +1,158 @@
+/* الألوان مأخوذة من واجهة التطبيق في الصور */
+:root {
+    --bg-color: #8E0A4E; /* لون خلفية الصفحة الأرجواني الداكنة */
+    --card-bg: #FFFFFF;
+    --text-main: #333333;
+    --text-light: #666666;
+    --white: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    background-color: #333; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* حاوية الهاتف */
+.app-container {
+    background-color: var(--bg-color);
+    width: 360px;
+    height: 740px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    overflow-y: auto; /* السماح بالتمرير العامودي */
+    position: relative;
+    direction: rtl; /* لضمان تنسيق العناصر للعربية */
+}
+
+/* الشريط العلوي */
+.dashboard-header {
+    background-color: #1A1A1A;
+    color: var(--white);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+}
+
+.notification-icon {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    left: -10px;
+    background-color: #FF5722;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+
+.menu-icon { font-size: 24px; cursor: pointer; }
+
+/* المحتوى */
+.dashboard-content {
+    padding: 15px;
+}
+
+/* بطاقات الرصيد */
+.balance-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.welcome-text { font-size: 12px; color: var(--text-light); margin-bottom: 5px; }
+.account-type { font-size: 14px; font-weight: 700; color: #8E0A4E; margin-bottom: 10px; }
+.balance-amount { font-size: 28px; font-weight: 700; color: #333; }
+
+/* أرصدة العملات */
+.other-balances {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.balance-item {
+    background-color: #E0E0E0;
+    border-radius: 12px;
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.currency { font-weight: 500; font-size: 14px; color: #333; }
+.label { color: #8E0A4E; font-size: 12px; font-weight: 700; }
+
+.show-less {
+    color: var(--white);
+    text-decoration: underline;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+/* شبكة الخدمات (Grid) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* عمودين */
+    gap: 10px;
+    padding-bottom: 20px; /* مسافة سفلية */
+}
+
+.service-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: var(--white);
+}
+
+/* ألوان أيقونات الخدمات (مثال) */
+.service-icon-1 { background-color: #9C27B0; }
+.service-icon-2 { background-color: #673AB7; }
+.service-icon-3 { background-color: #BA68C8; }
+.service-icon-4 { background-color: #7E57C2; }
+
+.service-label {
+    font-size: 12px;
+    color: var(--text-main);
+    font-weight: 500;
+}

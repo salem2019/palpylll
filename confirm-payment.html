@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد العملية</title>
+        <link rel="icon" type="image/png" href="./icon.jpeg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; }
+        body { background: #222; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        
+        .mobile-frame {
+            width: 375px; height: 780px; 
+            background-color: #f2f2f2;
+            border-radius: 10px; overflow: hidden; display: flex; flex-direction: column;
+        }
+
+        header { background: #1a151b; color: white; padding: 15px; display: flex; align-items: center; }
+        header a { color: white; text-decoration: none; font-size: 20px; }
+
+        .content { padding: 20px; flex: 1; }
+        .page-title { color: #6a1b9a; text-align: center; font-size: 24px; margin: 15px 0 40px; font-weight: bold; }
+
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 25px; align-items: flex-start; }
+        .info-label { color: #555; font-weight: bold; font-size: 16px; width: 100px; text-align: left; }
+        .info-value { color: #222; font-weight: 500; font-size: 16px; flex: 1; text-align: right; }
+
+        .receiver-box { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+        .receiver-text { text-align: right; }
+        .receiver-name-display { font-weight: bold; display: block; margin-bottom: 5px; color: #6a1b9a; }
+        .receiver-img { width: 45px; height: 45px; border-radius: 4px; background: #880e4f; }
+
+        .note-text { color: #6a1b9a; font-weight: bold; text-align: center; margin-top: 40px; font-size: 14px; }
+
+        .btn-confirm { 
+            width: 90%; padding: 15px; border: none; border-radius: 8px;
+            background: #3949ab; color: white; font-weight: bold; font-size: 18px;
+            margin: 30px auto; display: block; cursor: pointer;
+        }
+
+
+
+        .receiver-img { 
+    width: 45px; 
+    height: 45px; 
+    border-radius: 6px; 
+    background: #f0f0f0; /* تغيير الخلفية الحمراء إلى رمادي فاتح أو شفاف */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    overflow: hidden; /* لقص زوايا الصورة لتناسب الحواف */
+    border: 1px solid #ddd;
+}
+
+.receiver-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* لضمان ملء الصورة للمربع بالكامل دون تشويه */
+}
+    </style>
+</head>
+<body>
+
+<div class="mobile-frame">
+    <header>
+        <a href="payment-page.html"><i class="fas fa-arrow-right"></i></a>
+    </header>
+
+    <div class="content">
+        <h2 class="page-title">تأكيد</h2>
+
+        <div class="info-row">
+            <span class="info-value">حساب الشيكل</span>
+            <span class="info-label">من حساب</span>
+        </div>
+
+        <div class="info-row">
+            <div class="info-value receiver-box">
+                <div class="receiver-text">
+                    <!-- هنا سيظهر الاسم والرقم ديناميكياً -->
+                    <span class="receiver-name-display" id="display-name">جاري التحميل...</span>
+                    <span id="display-phone">0000000000</span>
+                </div>
+<div class="receiver-img">
+        <img src="./ps.png" alt="صورة المستلم" id="display-img">
+    </div>            </div>
+            <span class="info-label">الى</span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-value" id="display-amount">0 ILS</span>
+            <span class="info-label">المبلغ</span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-value" id="display-commission">0.5 ILS</span>
+            <span class="info-label">العمولة</span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-value" id="display-total" style="font-weight: bold; color: #1a237e;">0 ILS</span>
+            <span class="info-label">المبلغ الكلي</span>
+        </div>
+
+        <p class="note-text">الخطوة التالية لا تتطلب رقم مرور</p>
+
+        <button class="btn-confirm" onclick="window.location.href='success-page.html'">تأكيد</button>
+    </div>
+</div>
+
+<script>
+    // هذه الدالة تعمل فور فتح الصفحة
+    window.onload = function() {
+        // 1. جلب البيانات من الذاكرة (localStorage)
+        const savedName = localStorage.getItem('paymentName');
+        const savedPhone = localStorage.getItem('paymentPhone');
+        const savedAmount = localStorage.getItem('paymentAmount');
+
+        // 2. حساب المبالغ
+        const amount = parseFloat(savedAmount) || 0;
+        const commission = 0.5; // عمولة ثابتة كما في الصورة
+        const total = amount + commission;
+
+        // 3. عرض البيانات في أماكنها الصحيحة
+        if(savedName) document.getElementById('display-name').innerText = savedName;
+        if(savedPhone) document.getElementById('display-phone').innerText = savedPhone;
+        
+        document.getElementById('display-amount').innerText = amount + " ILS";
+        document.getElementById('display-commission').innerText = commission + " ILS";
+        document.getElementById('display-total').innerText = total + " ILS";
+
+        // اختياري: حفظ المجموع النهائي لاستخدامه في صفحة النجاح
+        localStorage.setItem('finalTotal', total);
+    };
+</script>
+
+</body>
+</html>

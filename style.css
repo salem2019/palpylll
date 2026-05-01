@@ -1,0 +1,261 @@
+:root {
+    --primary-color: #7B2CBF; /* اللون الأرجواني الرئيسي */
+    --secondary-color: #6C757D; /* رمادي خفيف */
+    --background-color: #E0E0E0; /* رمادي الخلفية */
+    --text-color: #333333;
+    --white: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', sans-serif; /* استخدام الخط المطلوب */
+}
+
+body {
+    background-color: #333; /* لون خلفية خارجي ليشبه شاشة الهاتف */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* حاوية تشبه شاشة الهاتف */
+.app-container {
+    background-color: var(--background-color);
+    width: 360px; /* عرض تقريبي لشاشة الهاتف */
+    height: 740px; /* طول تقريبي لشاشة الهاتف */
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* الشريط العلوي */
+.main-header {
+    background-color: #1A1A1A; /* أسود داكن جداً */
+    color: var(--white);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: ltr; /* لضبط ترتيب الأيقونة والعنوان */
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 18px;
+    flex-grow: 1;
+    text-align: right;
+    margin-right: 20px;
+}
+
+/* المحتوى الرئيسي */
+.main-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* زر اللغة */
+.lang-btn {
+    background-color: #3F51B5; /* أزرق داكن */
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: flex-start; /* ليكون في الزاوية */
+    margin-bottom: 30px;
+}
+
+/* المدخلات */
+.input-group {
+    margin-bottom: 5px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #CCC; /* خط سفلي فقط */
+    background: transparent;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-bottom-color: var(--primary-color);
+}
+
+.forgot-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 12px;
+    margin-bottom: 25px;
+    display: block;
+    text-align: left;
+}
+
+/* الأزرار الرئيسية والثانوية */
+.primary-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #1A237E 0%, #7B1FA2 100%); /* التدرج اللوني في التصميم */
+    margin-bottom: 10px;
+}
+
+.secondary-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #1565C0 0%, #D81B60 100%); /* تدرج لوني آخر */
+    margin-bottom: 30px;
+}
+
+/* بطاقات الاتصال */
+.bottom-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.action-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: var(--white);
+}
+
+.phone-icon-bg { background-color: #BA68C8; }
+.wallet-icon-bg { background-color: #6A1B9A; }
+
+.action-card span {
+    font-size: 14px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* تراكب النافذة المنبثقة (Popup Overlay) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* خلفية داكنة */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+/* تفعيل النافذة */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* محتوى النافذة */
+.modal-content {
+    background-color: var(--white);
+    width: 85%;
+    max-width: 320px;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.modal-title {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.modal-subtitle {
+    font-size: 14px;
+    color: var(--text-color);
+    margin-bottom: 25px;
+}
+
+/* مربعات إدخال الرمز */
+.code-inputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+    direction: ltr; /* لإدخال الرمز من اليسار لليمين */
+}
+
+.code-input {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    outline: none;
+}
+
+.code-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(123, 44, 191, 0.5);
+}
+
+.cancel-link {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تمت العملية بنجاح</title>
+        <link rel="icon" type="image/png" href="./icon.jpeg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #3949ab;
+            --text-purple: #6a1b9a;
+            --bg-light: #f8f9fa;
+        }
+
+        * { box-sizing: border-box; font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; }
+        
+        body { 
+            background: #222; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+        }
+        
+        .mobile-frame {
+            width: 375px; 
+            height: 780px; 
+            background-color: var(--bg-light);
+            border-radius: 10px; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column;
+            position: relative;
+        }
+
+        .content { 
+            padding: 20px; 
+            text-align: center; 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
+
+        .illustration { 
+            width: 100%; 
+            margin-top: 40px;
+            margin-bottom: 20px; 
+            display: flex;
+            justify-content: center;
+        }
+        .illustration img { 
+            width: 90%; 
+            height: auto;
+        }
+
+        .success-msg { 
+            color: #1a237e; 
+            font-size: 18px; 
+            font-weight: bold; 
+            margin-bottom: 25px; 
+        }
+
+        .details-card {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .receiver-name { 
+            color: var(--text-purple); 
+            font-weight: bold; 
+            font-size: 18px; 
+            margin-bottom: 5px; 
+            display: block; 
+        }
+
+        .receiver-phone { 
+            color: #333; 
+            font-size: 16px;
+            margin-bottom: 15px; 
+            display: block; 
+            border-bottom: 1px solid #eee; 
+            padding-bottom: 12px; 
+        }
+
+        .detail-row { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 12px; 
+            font-size: 16px; 
+        }
+
+        .detail-label { color: #666; font-weight: 500; }
+        .detail-value { color: #222; font-weight: bold; }
+
+        .btn-footer { width: 100%; padding: 20px; margin-top: auto; }
+        .btn-ok { 
+            width: 100%; padding: 14px; border: none; border-radius: 8px;
+            background: var(--primary-blue); color: white; font-weight: bold; 
+            font-size: 18px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="mobile-frame">
+    <div class="content">
+        <div class="illustration">
+            <img src="./don.png" alt="Success">
+        </div>
+
+        <h2 class="success-msg">تمت عملية التحويل بنجاح.</h2>
+
+        <div class="details-card">
+            <!-- معرفات (IDs) لاستقبال البيانات -->
+            <span class="receiver-name" id="final-name">جاري التحميل...</span>
+            <span class="receiver-phone" id="final-phone">0000000000</span>
+
+            <div class="detail-row">
+                <span class="detail-value" id="final-total">0 شيكل</span>
+                <span class="detail-label">المبلغ</span>
+            </div>
+
+            <div class="detail-row">
+                <span class="detail-value">168245852</span>
+                <span class="detail-label">رمز العملية</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-footer">
+        <button class="btn-ok" onclick="window.location.href='dashboard.html'">موافق</button>
+    </div>
+</div>
+
+<script>
+    window.onload = function() {
+        // جلب البيانات التي تم حفظها في الصفحات السابقة
+        const name = localStorage.getItem('paymentName');
+        const phone = localStorage.getItem('paymentPhone');
+        const total = localStorage.getItem('finalTotal'); // جلبنا المجموع الكلي من صفحة التأكيد
+
+        // عرض البيانات في الصفحة
+        if(name) document.getElementById('final-name').innerText = name;
+        if(phone) document.getElementById('final-phone').innerText = phone;
+        if(total) document.getElementById('final-total').innerText = total + " شيكل";
+    };
+</script>
+
+</body>
+</html>
